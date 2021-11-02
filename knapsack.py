@@ -31,6 +31,16 @@ def knapsack_tabulated(capacity, weight, value, n):
 				table[i][w] = table[i-1][w]
 	return table[n][capacity]
 
+# Knapsack - Dynamic Programming approach with optimized space complexity
+# Time Complexity: O(N*W)
+# Space Complexity: O(W). 1D list is used instead of 2D list.
+def knapsack_optimized(capacity, weight, value, n, list):
+	for i in range(1, n + 1):
+		for j in range(capacity, 0, -1):
+			if weight[i-1] <= j:
+				list[j] = max(list[j], list[j-weight[i - 1]] + value[i - 1])
+	return list[capacity]
+	
 # Knapsack Memoization - Extension of recursive for redundant calculations and increased time complexity.
 # Time Complexity: O(N*W)
 def knapsack_memoization(capacity, weight, value, n, list):
@@ -70,10 +80,11 @@ if __name__ == '__main__':
 	value = [60, 100, 120]
 	n = len(weight)
 	list = [[-1 for x in range(capacity + 1)] for x in range(n + 1)]
+	list_2 = [0 for i in range(capacity + 1)] 
 	print(knapsack_recursive(capacity, weight, value, n))
 	print(knapsack_tabulated(capacity, weight, value, n))
 	print(knapsack_memoization(capacity, weight, value, n, list))
-
+	print(knapsack_optimized(capacity, weight, value, n, list_2))
 	# Output: 220
 	# Explanation: The optimal solution is to take the first, the second and the fourth item.
 	# The total value is 1 + 4 + 7 = 13.
