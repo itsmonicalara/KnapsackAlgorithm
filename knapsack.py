@@ -11,7 +11,7 @@ def knapsack_recursive(capacity, weight, value, n):
 		# The object fits in the backpack
 		return max(value[n-1] + knapsack_recursive(capacity - weight[n-1], weight, value, n-1), knapsack_recursive(capacity, weight, value, n-1))
 
-# Knapsack Tabulated -  Dynammic Programming (Recursive to iterative).
+# Knapsack Tabulated -  Dynammic Programming (Recursive to iterative). Divided into subproblems.
 # Time Complexity: O(N*W).
 def knapsack_tabulated(capacity, weight, value, n):
 	# Create a table to store the results of subproblems
@@ -31,10 +31,11 @@ def knapsack_tabulated(capacity, weight, value, n):
 				table[i][w] = table[i-1][w]
 	return table[n][capacity]
 
-# Knapsack - Dynamic Programming approach with optimized space complexity.
+# Knapsack - Dynamic Programming approach with optimized space complexity. 
 # Time Complexity: O(N*W).
 # Space Complexity: O(W). 1D list is used instead of 2D list.
-def knapsack_optimized(capacity, weight, value, n, list):
+def knapsack_optimized(capacity, weight, value, n):
+	list = [0 for i in range(capacity + 1)] 
 	for i in range(1, n + 1):
 		for j in range(capacity, 0, -1):
 			if weight[i-1] <= j:
@@ -43,8 +44,9 @@ def knapsack_optimized(capacity, weight, value, n, list):
 	
 # Knapsack Memoization - Extension of recursive for redundant calculations and increased time complexity.
 # Time Complexity: O(N*W).
-def knapsack_memoization(capacity, weight, value, n, list):
+def knapsack_memoization(capacity, weight, value, n):
 	# It is necessary to to initialize the list with a -1 at the start.
+	list = [[-1 for x in range(capacity + 1)] for x in range(n + 1)]
 	# Base case
 	if(n == 0 or capacity == 0):
 		return 0
@@ -53,11 +55,11 @@ def knapsack_memoization(capacity, weight, value, n, list):
 			return list[n-1][capacity]
 	# The object weights less than the backpack.
 	if(weight[n-1] <= capacity):
-		list[n][capacity] = max(value[n-1] + knapsack_memoization(capacity - weight[n-1], weight, value, n-1, list), knapsack_memoization(capacity, weight, value, n-1, list))
+		list[n][capacity] = max(value[n-1] + knapsack_memoization(capacity - weight[n-1], weight, value, n-1), knapsack_memoization(capacity, weight, value, n-1))
 		return list[n][capacity]
 	# The object does not fit in the backpack.
 	elif(weight[n-1] > capacity):
-		list[n][capacity] = knapsack_memoization(capacity, weight, value, n-1, list)
+		list[n][capacity] = knapsack_memoization(capacity, weight, value, n-1)
 		return list[n][capacity]
 
 # Knapsack - Fractional 
@@ -83,10 +85,8 @@ if __name__ == '__main__':
 	weight = [10, 20, 30]
 	value = [60, 100, 120]
 	n = len(weight)
-	list = [[-1 for x in range(capacity + 1)] for x in range(n + 1)]
-	list_2 = [0 for i in range(capacity + 1)] 
-	print(knapsack_recursive(capacity, weight, value, n))
+	print('Maximum value that can be stored in the bag: ', knapsack_recursive(capacity, weight, value, n))
 	print(knapsack_tabulated(capacity, weight, value, n))
-	print(knapsack_memoization(capacity, weight, value, n, list))
-	print(knapsack_optimized(capacity, weight, value, n, list_2))
+	print(knapsack_memoization(capacity, weight, value, n))
+	print(knapsack_optimized(capacity, weight, value, n))
 	# Output: 220
