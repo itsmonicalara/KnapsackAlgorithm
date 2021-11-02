@@ -1,5 +1,5 @@
 # Knapsack 0/1 - Takes objects in whole numbers.
-# Time Complexity: O(2^n)
+# Time Complexity: O(2^n).
 def knapsack_recursive(capacity, weight, value, n):
 	# Base case
 	if(n == 0 or capacity == 0):
@@ -11,8 +11,8 @@ def knapsack_recursive(capacity, weight, value, n):
 		# The object fits in the backpack
 		return max(value[n-1] + knapsack_recursive(capacity - weight[n-1], weight, value, n-1), knapsack_recursive(capacity, weight, value, n-1))
 
-# Knapsack Tabulated -  Dynammic Programming (Recursive to iterative)
-# Time Complexity: O(N*W)
+# Knapsack Tabulated -  Dynammic Programming (Recursive to iterative).
+# Time Complexity: O(N*W).
 def knapsack_tabulated(capacity, weight, value, n):
 	# Create a table to store the results of subproblems
 	table = [[0 for x in range(capacity + 1)] for x in range(n + 1)]
@@ -31,8 +31,8 @@ def knapsack_tabulated(capacity, weight, value, n):
 				table[i][w] = table[i-1][w]
 	return table[n][capacity]
 
-# Knapsack - Dynamic Programming approach with optimized space complexity
-# Time Complexity: O(N*W)
+# Knapsack - Dynamic Programming approach with optimized space complexity.
+# Time Complexity: O(N*W).
 # Space Complexity: O(W). 1D list is used instead of 2D list.
 def knapsack_optimized(capacity, weight, value, n, list):
 	for i in range(1, n + 1):
@@ -42,7 +42,7 @@ def knapsack_optimized(capacity, weight, value, n, list):
 	return list[capacity]
 	
 # Knapsack Memoization - Extension of recursive for redundant calculations and increased time complexity.
-# Time Complexity: O(N*W)
+# Time Complexity: O(N*W).
 def knapsack_memoization(capacity, weight, value, n, list):
 	# It is necessary to to initialize the list with a -1 at the start.
 	# Base case
@@ -59,6 +59,10 @@ def knapsack_memoization(capacity, weight, value, n, list):
 	elif(weight[n-1] > capacity):
 		list[n][capacity] = knapsack_memoization(capacity, weight, value, n-1, list)
 		return list[n][capacity]
+
+# Knapsack - Fractional 
+def knapsack_fractional(capacity, weight, value, n):
+	return
 
 # Knapsack Backtracking
 def knapsack_backtracking(capacity, weight, value, n):
@@ -86,9 +90,3 @@ if __name__ == '__main__':
 	print(knapsack_memoization(capacity, weight, value, n, list))
 	print(knapsack_optimized(capacity, weight, value, n, list_2))
 	# Output: 220
-	# Explanation: The optimal solution is to take the first, the second and the fourth item.
-	# The total value is 1 + 4 + 7 = 13.
-	# The backpack cannot hold the fifth item, so we ignore it.
-	# The backpack can hold the first, second and third item.
-	# The total value is 1 + 4 + 5 = 9.
-	# The backpack can hold the first and second item.
