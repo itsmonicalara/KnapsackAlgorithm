@@ -2,36 +2,49 @@
 def knapsack_recursive(capacity, weight, value, n):
 	# Base case
 	if(n == 0 or capacity == 0):
-		return 0;
+		return 0
 	# The objects weights more than the backpack
 	if(weight[n-1] > capacity):
-		return knapsack_recursive(capacity, weight, value, n-1);
+		return knapsack_recursive(capacity, weight, value, n-1)
 	else:
 		# The object fits in the backpack
-		return max(value[n-1] + knapsack_recursive(capacity - weight[n-1], weight, value, n-1), knapsack_recursive(capacity, weight, value, n-1));
+		return max(value[n-1] + knapsack_recursive(capacity - weight[n-1], weight, value, n-1), knapsack_recursive(capacity, weight, value, n-1))
 
 # Knapsack Tabulated -  Dynammic Programming (Recursive to iterative)
 def knapsack_tabulated(capacity, weight, value, n):
 	# Create a table to store the results of subproblems
-	K = [[0 for x in range(capacity + 1)] for x in range(n + 1)];
+	K = [[0 for x in range(capacity + 1)] for x in range(n + 1)]
 	# Fill the entries for 0th item
 	for i in range(0, capacity + 1):
-		K[0][i] = 0;
+		K[0][i] = 0
 	# Fill the entries for 0th item
 	for i in range(0, n + 1):
-		K[i][0] = 0;
+		K[i][0] = 0
 	# Fill rest of the entries in bottom-up manner
 	for i in range(1, n + 1):
 		for w in range(1, capacity + 1):
 			if(weight[i-1] <= w):
-				K[i][w] = max(value[i-1] + K[i-1][w-weight[i-1]], K[i-1][w]);
+				K[i][w] = max(value[i-1] + K[i-1][w-weight[i-1]], K[i-1][w])
 			else:
-				K[i][w] = K[i-1][w];
-	return K[n][capacity];
+				K[i][w] = K[i-1][w]
+	return K[n][capacity]
 
 # Knapsack Memoization
-def knapsack_memoization(capacity, weight, value, n):
-	return
+def knapsack_memoization(capacity, weight, value, n, list):
+	# Base case
+	if(n == 0 or capacity == 0):
+		return 0
+	# Check if the combination of n and capacity is not already calculated.
+	if(list[n-1][capacity] != -1):
+			return list[n-1][capacity]
+	# The object weights less than the backpack.
+	if(weight[n-1] <= capacity):
+		list[n][capacity] = max(value[n-1] + knapsack_memoization(capacity - weight[n-1], weight, value, n-1, list), knapsack_memoization(capacity, weight, value, n-1, list))
+		return list[n][capacity]
+	# The object does not fit in the backpack.
+	elif(weight[n-1] > capacity):
+		list[n][capacity] = knapsack_memoization(capacity, weight, value, n-1, list)
+		return list[n][capacity]
 
 # Knapsack Backtracking
 def knapsack_backtracking(capacity, weight, value, n):
@@ -48,12 +61,15 @@ def knapsack_greedy(capacity, weight, value, n):
 
 
 if __name__ == '__main__':
-	capacity = 50;
-	weight = [10, 20, 30];
-	value = [60, 100, 120];
-	n = len(weight);
-	print(knapsack_recursive(capacity, weight, value, n));
-	print(knapsack_tabulated(capacity, weight, value, n));
+	capacity = 50
+	weight = [10, 20, 30]
+	value = [60, 100, 120]
+	n = len(weight)
+	list = [[-1 for x in range(capacity + 1)] for x in range(n + 1)]
+	print(knapsack_recursive(capacity, weight, value, n))
+	print(knapsack_tabulated(capacity, weight, value, n))
+	print(knapsack_memoization(capacity, weight, value, n, list))
+
 	# Output: 220
 	# Explanation: The optimal solution is to take the first, the second and the fourth item.
 	# The total value is 1 + 4 + 7 = 13.
