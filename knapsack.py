@@ -1,4 +1,4 @@
-# Knapsack 0/1 - Takes objects in whole numbers.
+# Knapsack 0/1 - Takes objects in whole numbers. Brute Force.
 # Time Complexity: O(2^n).
 def knapsack_recursive(capacity, weight, value, n):
 	# Base case
@@ -62,9 +62,28 @@ def knapsack_memoization(capacity, weight, value, n):
 		list[n][capacity] = knapsack_memoization(capacity, weight, value, n-1)
 		return list[n][capacity]
 
-# Knapsack - Fractional 
+# Knapsack - Fractional.
+# Time Complexity O(n*log*n)
 def knapsack_fractional(capacity, weight, value, n):
-	return
+	list = []
+	for i in range(n):
+		# Join weight, value and index in a single list.
+		list.append((weight[i], value[i], i))
+	# Sort the list in descending order of value/weight ratio.
+	list.sort(key=lambda tup: tup[1]/tup[0], reverse=True)
+	total_value = 0
+	for i in list:
+		# If the weight of the object is less than the capacity, add it to the knapsack.
+		if(capacity >= i[0]):
+			# Add the value of the object to the total value.
+			total_value += i[1]
+			# Reduce the capacity by the weight of the object.
+			capacity -= i[0]
+		else:
+			# If the weight of the object is more than the capacity, add the fractional part of the object to the knapsack.
+			total_value += capacity * i[1]/i[0]
+			break
+	return total_value
 
 # Knapsack Backtracking
 def knapsack_backtracking(capacity, weight, value, n):
@@ -86,7 +105,8 @@ if __name__ == '__main__':
 	value = [60, 100, 120]
 	n = len(weight)
 	print('Maximum value that can be stored in the bag: ', knapsack_recursive(capacity, weight, value, n))
-	print(knapsack_tabulated(capacity, weight, value, n))
-	print(knapsack_memoization(capacity, weight, value, n))
-	print(knapsack_optimized(capacity, weight, value, n))
+	# print(knapsack_tabulated(capacity, weight, value, n))
+	# print(knapsack_memoization(capacity, weight, value, n))
+	# print(knapsack_optimized(capacity, weight, value, n))
+	print(knapsack_fractional(capacity, weight, value, n))
 	# Output: 220
