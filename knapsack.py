@@ -29,7 +29,9 @@ def knapsack_tabulated(capacity, weight, value, n):
 				table[i][w] = max(value[i-1] + table[i-1][w-weight[i-1]], table[i-1][w])
 			else:
 				table[i][w] = table[i-1][w]
-	return table[n][capacity]
+	print(table[n][capacity])		
+	return table
+
 
 # Knapsack - Dynamic Programming approach with optimized space complexity. 
 # Time Complexity: O(N*W).
@@ -38,7 +40,8 @@ def knapsack_optimized(capacity, weight, value, n):
 	list = [0 for i in range(capacity + 1)] 
 	for i in range(1, n + 1):
 		for j in range(capacity, 0, -1):
-			if weight[i-1] <= j:
+			# If the weight of the object is less than the capacity, add it to the knapsack.
+			if weight[i-1] <= j: 
 				list[j] = max(list[j], list[j-weight[i - 1]] + value[i - 1])
 	return list[capacity]
 	
@@ -62,7 +65,7 @@ def knapsack_memoization(capacity, weight, value, n):
 		list[n][capacity] = knapsack_memoization(capacity, weight, value, n-1)
 		return list[n][capacity]
 
-# Knapsack - Fractional.
+# Knapsack - Fractional. You can take fractional number of objects.
 # Time Complexity O(n*log*n)
 def knapsack_fractional(capacity, weight, value, n):
 	list = []
@@ -105,8 +108,10 @@ if __name__ == '__main__':
 	value = [60, 100, 120]
 	n = len(weight)
 	print('Maximum value that can be stored in the bag: ', knapsack_recursive(capacity, weight, value, n))
-	# print(knapsack_tabulated(capacity, weight, value, n))
-	# print(knapsack_memoization(capacity, weight, value, n))
-	# print(knapsack_optimized(capacity, weight, value, n))
+	print(knapsack_memoization(capacity, weight, value, n))
+	print(knapsack_optimized(capacity, weight, value, n))
 	print(knapsack_fractional(capacity, weight, value, n))
+	# print(knapsack_tabulated(capacity, weight, value, n))
+	table = knapsack_tabulated(capacity, weight, value, n)
+	print('\n'.join(['\t'.join([str(cell) for cell in row]) for row in table]))
 	# Output: 220
