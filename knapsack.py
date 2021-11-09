@@ -1,3 +1,6 @@
+from backpack import *
+from item import *
+
 # Knapsack 0/1 - Takes objects in whole numbers. Brute Force.
 # Time Complexity: O(2^n).
 def knapsack_recursive(capacity, weight, value, n):
@@ -29,8 +32,21 @@ def knapsack_tabulated(capacity, weight, value, n):
 				table[i][w] = max(value[i-1] + table[i-1][w-weight[i-1]], table[i-1][w])
 			else:
 				table[i][w] = table[i-1][w]
-	print(table[n][capacity])		
-	return table
+	# Stores the result of Knapsack
+	res = table[n][capacity]
+	print('Optimal value of the backpack: ', res)
+	# Return list of items selected
+	items = []
+	for i in range(n, 0, -1):
+		if res <= 0:
+			break
+		if res == table[i - 1][capacity]:
+			continue
+		else:
+			items.append([weight[i - 1], value[i - 1]])
+			res = res - value[i - 1]
+			capacity = capacity - weight[i - 1]
+	return items
 
 
 # Knapsack - Dynamic Programming approach with optimized space complexity. 
@@ -103,15 +119,16 @@ def knapsack_greedy(capacity, weight, value, n):
 
 
 if __name__ == '__main__':
+	backpack = Backpack(50)
 	capacity = 50
 	weight = [10, 20, 30]
 	value = [60, 100, 120]
 	n = len(weight)
-	print('Maximum value that can be stored in the bag: ', knapsack_recursive(capacity, weight, value, n))
-	print(knapsack_memoization(capacity, weight, value, n))
-	print(knapsack_optimized(capacity, weight, value, n))
-	print(knapsack_fractional(capacity, weight, value, n))
-	# print(knapsack_tabulated(capacity, weight, value, n))
-	table = knapsack_tabulated(capacity, weight, value, n)
-	print('\n'.join(['\t'.join([str(cell) for cell in row]) for row in table]))
+	# print('Maximum value that can be stored in the bag: ', knapsack_recursive(capacity, weight, value, n))
+	# print(knapsack_memoization(capacity, weight, value, n))
+	#print(knapsack_optimized(capacity, weight, value, n))
+	# print(knapsack_fractional(capacity, weight, value, n))
+	print(knapsack_tabulated(capacity, weight, value, n))
+	# table = knapsack_tabulated(capacity, weight, value, n)
+	# print('\n'.join(['\t'.join([str(cell) for cell in row]) for row in table]))
 	# Output: 220
