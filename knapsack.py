@@ -16,7 +16,7 @@ def knapsack_recursive(capacity, weight, value, n):
 
 # Knapsack Tabulated -  Dynammic Programming (Recursive to iterative). Divided into subproblems.
 # Time Complexity: O(N*W).
-def knapsack_tabulated(capacity, weight, value, n):
+def knapsack_tabulated(capacity, weight, value, n , name):
 	# Create a table to store the results of subproblems
 	table = [[0 for x in range(capacity + 1)] for x in range(n + 1)]
 	# Fill the entries for 0th item
@@ -37,16 +37,19 @@ def knapsack_tabulated(capacity, weight, value, n):
 	print('Optimal value of the backpack: ', res)
 	# Return list of items selected
 	items = []
+	name_items = []
 	for i in range(n, 0, -1):
 		if res <= 0:
 			break
 		if res == table[i - 1][capacity]:
 			continue
 		else:
+			# Just in case we need values of selected items
 			items.append([weight[i - 1], value[i - 1]])
+			name_items.append(name[i - 1])
 			res = res - value[i - 1]
 			capacity = capacity - weight[i - 1]
-	return items
+	return name_items
 
 
 # Knapsack - Dynamic Programming approach with optimized space complexity. 
@@ -121,6 +124,11 @@ def knapsack_greedy(capacity, weight, value, n):
 if __name__ == '__main__':
 	
 	# Test case 1
+	# capacity = 50
+	# item1 = Item(10, 60, "Acta de nacimiento")
+    # item2 = Item(20, 100, "Agua")
+    # item3 = Item(30, 120, "Medicinas") 
+	# Expected output: 220
 	print('Knapsack Program\n')
 	capacity = int(input('Enter the capacity of the backpack: '))
 	backpack = Backpack(capacity)
@@ -133,7 +141,7 @@ if __name__ == '__main__':
 		backpack.new_format(item)
 
 	print('\nKnapsack Tabulated 1/0:')
-	accepted_items = knapsack_tabulated(backpack.capacity, backpack.weight_list, backpack.values_list, n)
+	accepted_items = knapsack_tabulated(backpack.capacity, backpack.weight_list, backpack.values_list, n, backpack.names_list)
 	backpack.list_items = accepted_items
 	backpack.get_items()
 

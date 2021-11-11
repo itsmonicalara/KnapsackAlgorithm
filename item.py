@@ -12,12 +12,5 @@ class Item:
 
     def get_info(self):
         return [self.weight, self.value, self.name]
-
-
-if __name__ == "__main__":
-    item = Item(10, 5, "Acta de nacimiento") 
-    print(item.weight)
-    # new_list = item.get_info()
-    # print(new_list)
     
 
