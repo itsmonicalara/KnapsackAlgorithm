@@ -6,11 +6,18 @@ class Item:
         self.name = name
 
     def __repr__(self):
-        string = "Weight: {}\nValue: {}\nName: {}\n".format(self.weight, self.value, self.name)
-        return string
+        info = []
+        info.append('{} {} {}'.format(self.weight, self.value, self.name))
+        return info  
+
+    def get_info(self):
+        return [self.weight, self.value, self.name]
 
 
 if __name__ == "__main__":
-    item = Item(10, 5, "Acta de nacimiento")
-    print(item)
+    item = Item(10, 5, "Acta de nacimiento") 
+    print(item.weight)
+    # new_list = item.get_info()
+    # print(new_list)
+    
 

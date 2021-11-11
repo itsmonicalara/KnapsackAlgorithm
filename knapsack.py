@@ -119,18 +119,14 @@ def knapsack_greedy(capacity, weight, value, n):
 
 
 if __name__ == '__main__':
-	# Test Case 1
-	# item1 = Item(10, 60, 'Algo')
-	# print(item1.weight, item1.value, item1.name)
-	# backpack = Backpack(50)
-	# backpack.add_item(Item(10, 60, 'A'))
-	# backpack.add_item(Item(20, 100, 'B'))
-	# backpack.add_item(Item(30, 120, 'C'))
-	# print(backpack.get_items())
-	n = 3
-	capacity = 50
-	weight = [10, 20, 30]
-	value = [60, 100, 120]
+	
+	weight_list = []
+	values_list = []
+	names_list = []
+
+	
+
+
 	print('Knapsack Tabulated: ', knapsack_tabulated(capacity, weight, value, n))
 
 	# print(knapsack_tabulated(capacity, weight, value, n))
