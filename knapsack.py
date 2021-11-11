@@ -132,8 +132,11 @@ if __name__ == '__main__':
 		item = Item(weight, value, name)
 		backpack.new_format(item)
 
-	print('Knapsack Whole Items')
-	print('Knapsack Tabulated 1/0: ', knapsack_tabulated(backpack.capacity, backpack.weight_list, backpack.values_list, n))
+	print('\nKnapsack Tabulated 1/0:')
+	accepted_items = knapsack_tabulated(backpack.capacity, backpack.weight_list, backpack.values_list, n)
+	backpack.list_items = accepted_items
+	backpack.get_items()
+
 
 	# print(knapsack_tabulated(capacity, weight, value, n))
 

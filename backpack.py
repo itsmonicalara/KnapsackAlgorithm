@@ -16,7 +16,7 @@ class Backpack:
     
     # Get items in the backpack
     def get_items(self):
-        print("The choosen items are: ", self.list_items)
+        print("You should take these items with you: ", self.list_items)
 
     # Method to enter item values into different lists
     def new_format(self, item):
