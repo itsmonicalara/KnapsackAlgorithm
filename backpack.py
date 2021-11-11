@@ -24,7 +24,7 @@ class Backpack:
         self.values_list.append(item.value)
         self.names_list.append(item.name)
   
-        print(self.weight_list, self.values_list, self.names_list)
+        return(self.weight_list, self.values_list, self.names_list)
 
 
 
@@ -42,7 +42,6 @@ if __name__ == "__main__":
         value = int(input("Enter the value of the item: "))
         item = Item(weight, value, name)
         backpack.new_format(item)
-    print('Weight list:', backpack.weight_list)
     # item1 = Item(10, 60, "Acta de nacimiento")
     # item2 = Item(20, 100, "Agua")
     # item3 = Item(30, 120, "Medicinas")     

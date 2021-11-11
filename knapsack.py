@@ -120,14 +120,20 @@ def knapsack_greedy(capacity, weight, value, n):
 
 if __name__ == '__main__':
 	
-	weight_list = []
-	values_list = []
-	names_list = []
+	# Test case 1
+	print('Knapsack Program\n')
+	capacity = int(input('Enter the capacity of the backpack: '))
+	backpack = Backpack(capacity)
+	n = int(input("How many items do you want to choose? "))
+	for i in range(n):
+		name = input("Enter the name of the item: ")
+		weight = int(input("Enter the weight of the item: "))
+		value = int(input("Enter the value of the item: "))
+		item = Item(weight, value, name)
+		backpack.new_format(item)
 
-	
-
-
-	print('Knapsack Tabulated: ', knapsack_tabulated(capacity, weight, value, n))
+	print('Knapsack Whole Items')
+	print('Knapsack Tabulated 1/0: ', knapsack_tabulated(backpack.capacity, backpack.weight_list, backpack.values_list, n))
 
 	# print(knapsack_tabulated(capacity, weight, value, n))
 
