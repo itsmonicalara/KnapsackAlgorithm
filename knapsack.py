@@ -44,7 +44,7 @@ def knapsack_tabulated(capacity, weight, value, n , name):
 		if res == table[i - 1][capacity]:
 			continue
 		else:
-			# Just in case we need values of selected items
+			# Just in case we need weight and values of selected items
 			items.append([weight[i - 1], value[i - 1]])
 			name_items.append(name[i - 1])
 			res = res - value[i - 1]
@@ -86,26 +86,25 @@ def knapsack_memoization(capacity, weight, value, n):
 
 # Knapsack - Fractional. You can take fractional number of objects.
 # Time Complexity O(n*log*n)
-def knapsack_fractional(capacity, weight, value, n):
-	list = []
-	for i in range(n):
-		# Join weight, value and index in a single list.
-		list.append((weight[i], value[i], i))
+def knapsack_fractional(capacity, weight, value, n, name):
+	my_list = list(range(n))
+	ratio = [v/w for v, w in zip(value, weight)]
 	# Sort the list in descending order of value/weight ratio.
-	list.sort(key=lambda tup: tup[1]/tup[0], reverse=True)
+	my_list.sort(key=lambda i:ratio[i], reverse=True)
 	total_value = 0
-	for i in list:
-		# If the weight of the object is less than the capacity, add it to the knapsack.
-		if(capacity >= i[0]):
-			# Add the value of the object to the total value.
-			total_value += i[1]
-			# Reduce the capacity by the weight of the object.
-			capacity -= i[0]
+	fractions = [0]*len(value)
+	for i in my_list:
+		if weight[i] <= capacity:
+			fractions[i] = 1
+			total_value += value[i]
+			capacity -= weight[i]
 		else:
-			# If the weight of the object is more than the capacity, add the fractional part of the object to the knapsack.
-			total_value += capacity * i[1]/i[0]
+			fractions[i] = capacity/weight[i]
+			total_value += value[i]*capacity/weight[i]
 			break
-	return total_value
+	print('Optimal value of the backpack: ', total_value)
+	test = [i for i in zip(name, fractions)]
+	return test
 
 # Knapsack Backtracking
 def knapsack_backtracking(capacity, weight, value, n):
@@ -122,7 +121,6 @@ def knapsack_greedy(capacity, weight, value, n):
 
 
 if __name__ == '__main__':
-	
 	# Test case 1
 	# capacity = 50
 	# item1 = Item(10, 60, "Acta de nacimiento")
@@ -145,13 +143,12 @@ if __name__ == '__main__':
 	backpack.list_items = accepted_items
 	backpack.get_items()
 
+	accepted_items2 = knapsack_fractional(backpack.capacity, backpack.weight_list, backpack.values_list, n, backpack.names_list)
+	backpack.list_items = accepted_items2
+	backpack.get_items()
 
-	# print(knapsack_tabulated(capacity, weight, value, n))
-
-	# print('Maximum value that can be stored in the bag: ', knapsack_recursive(capacity, weight, value, n))
+	# print(knapsack_recursive(capacity, weight, value, n))
 	# print(knapsack_memoization(capacity, weight, value, n))
 	#print(knapsack_optimized(capacity, weight, value, n))
-	# print(knapsack_fractional(capacity, weight, value, n))
 	# table = knapsack_tabulated(capacity, weight, value, n)
 	# print('\n'.join(['\t'.join([str(cell) for cell in row]) for row in table]))
-	# Output: 220
