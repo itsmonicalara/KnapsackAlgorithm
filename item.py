@@ -5,10 +5,8 @@ class Item:
         self.value = value
         self.name = name
 
-    def __repr__(self):
-        info = []
-        info.append('{} {} {}'.format(self.weight, self.value, self.name))
-        return info  
+    def __str__(self):
+        return f'Item {self.name}, with weight: {self.weight} and value: {self.value}'
 
     def get_info(self):
         return [self.weight, self.value, self.name]
