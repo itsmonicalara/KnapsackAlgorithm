@@ -11,7 +11,7 @@ class Item:
 
     @weight.setter
     def weight(self, weight):
-        if capacity <= 0:
+        if weight <= 0:
             raise ValueError('Weight must be positive')    
         else:
             self._weight = weight
@@ -27,7 +27,6 @@ class Item:
         else:
             self._value = value
 
-        
     def __str__(self):
         return f'Item {self.name}, with weight: {self.weight} and value: {self.value}'
 

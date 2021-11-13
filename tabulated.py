@@ -3,9 +3,9 @@ from item import Item
 
 # Knapsack Tabulated -  Dynammic Programming (Recursive to iterative). Divided into subproblems.
 # Time Complexity: O(N*W).
-def tabulated(backpack, items, n):
+def tabulated(backpack, items):
 	# Create a table to store the results of subproblems
-	table = [[0 for x in range(backpack.capacity + 1)] for x in range(n + 1)]
+	table = [[0 for x in range(backpack.capacity + 1)] for x in range(backpack.total + 1)]
 	# Fill the entries for 0th item
 	for i in range(0, backpack.capacity + 1):
 		table[0][i] = 0
@@ -21,21 +21,17 @@ def tabulated(backpack, items, n):
 				table[i][w] = table[i-1][w]
 	# Stores the result of Knapsack
 	backpack.opt_value = table[backpack.total][backpack.capacity]
-	print('Optimal value of the backpack: ', backpack.opt_value)
-	
-	items = []
-	name_items = []
-	for i in range(n, 0, -1):
-		if res <= 0:
+
+	for i in range(backpack.total, 0, -1):
+		if backpack.opt_value <= 0:
 			break
-		if res == table[i - 1][capacity]:
+		if backpack.opt_value == table[i - 1][backpack.capacity]:
 			continue
 		else:
 			# Just in case we need weight and values of selected items
-			items.append([weight[i - 1], value[i - 1]])
-			name_items.append(name[i - 1])
-			res = res - value[i - 1]
-			capacity = capacity - weight[i - 1]
+			backpack.items.append(items[i-1])
+			backpack.opt_value = backpack.opt_value - items[i - 1].value
+			backpack.capacity = backpack.capacity - items[i - 1].weight
 	
 
 if __name__ == '__main__':
@@ -48,3 +44,4 @@ if __name__ == '__main__':
 	# Expected output: 220
 	items = [item1, item2, item3]
 	tabulated(backpack, items)
+	print(str(backpack))

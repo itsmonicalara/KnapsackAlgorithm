@@ -13,10 +13,7 @@ class Knapsack:
 
     @capacity.setter
     def capacity(self, capacity):
-        if capacity <= 0:
-            raise ValueError('Capacity must be positive')    
-        else:
-            self._capacity = capacity
+        self._capacity = capacity
 
     @property
     def opt_value(self):
@@ -30,4 +27,6 @@ class Knapsack:
             self._opt_value = opt_value
         
     def __str__(self):
-        return f'Backpack with capacity of : {self.capacity} \n Optimal Value of : {self.opt_value} '
+        return f'''Backpack with capacity of : {self.capacity} 
+                \n Optimal Value of : {self.opt_value} 
+                \n List of itmes : {[str(i) for i in self.items]}'''
