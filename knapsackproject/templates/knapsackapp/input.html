@@ -2,5 +2,241 @@
 {% extends 'knapsackapp/base.html' %} 
 
     {% block body_block %} 
-    <h1>INPUT DATA</h1>
+    <style>
+        .hidden{
+            display: none;
+        }
+
+        .hidden-btn{
+            display:none;
+        }
+
+        .card{
+            width: 50%;
+            float:left;
+            border: 2px solid black;
+            
+        }
+
+        input{
+            margin: 0 auto;
+            float: none;
+            max-width: 12em;
+            outline: 0;
+            border-width: 0 0 2px;
+            border-color: gray;
+            background: transparent;
+        }
+        label{
+            margin: 0 auto;
+            float: none;
+            
+        }
+
+        #item-form-list{
+            column-count: 1;
+            -webkit-column-count: 1; 
+        }
+
+        button{
+            float: right;
+            margin-right: 1em;
+        }
+
+        img{
+            margin: 0 auto;
+            float: none;
+            
+        }
+
+        form{
+            margin-left: 100px;
+        }
+        .my-buttons{
+            margin-top: 10px;
+            margin-right: 70px;
+            float:right;
+        }
+
+        .items-counter{
+            margin-top: 25px;
+            margin-bottom: 20px;
+            margin-left: 3px;
+            color: #2F4F4F;
+        }
+
+        .num-items{
+            font-family: 'Source Sans Pro', sans-serif;
+            padding-bottom: 30px;
+            margin-right: 145px;
+            font-size: 27px;
+            float: right;
+            position: relative;
+            color: #2F4F4F;
+        }
+
+    </style>
+    <div class="text-center  rounded mb-5 mr-5 ">
+        <h1 class="text-center mb-5">Ingresa los datos necesarios</h1>
+        <p>La <b><i>capacidad mochila</i></b> es la capacidad máxima de peso que tu mochila soporta.</p>
+        <hr>
+        <p>Asígnale un <b><i>nombre</i></b> al producto que deseas agregar. </p>
+        <hr>
+        <p>El <b><i>valor</i></b> de tu producto. Tú asíngale el valor que desees, ya sea monetario o sentimental.</p>
+        <hr>
+        <p>El <b><i>peso</i></b> de tu producto. Maneja la misma unidad de peso que la capacidad de tu mochila.</p></p>
+        
+    </div>
+    <hr>
+    <!-- action="{% url 'results' %}" -->
+    <form method="POST" >
+        {% csrf_token %}
+        <div class="row head-form">
+            <div class="col">
+                <div class="capacity-form">
+                    <label class="text-uppercase mt-3"> <img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/60/000000/external-backpack-jungle-vitaliy-gorbachev-lineal-vitaly-gorbachev.png" width="44px"/> Capacidad mochila: </label>
+                    <input type="number" class="mb-3" name="capacity"></input>
+                </div>
+            </div>
+            <div class="col">
+                <div class="my-buttons">
+                    <button type="submit" class="btn btn-success" >Continuar</button>
+                    <button id='add-more'class="btn btn-warning" type='button'> 
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                        width="24" height="24"
+                        viewBox="0 0 30 30"
+                        style=" fill:#000000;"><path d="M4,16H14V26a1,1,0,0,0,2,0V16H26a1,1,0,0,0,0-2H16V4a1,1,0,0,0-2,0V14H4a1,1,0,0,0,0,2Z"></path></svg>
+                    </button>
+                    <button id='rem-form'class="hidden-btn btn btn-danger" type='button'> 
+                        <img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png" width="24" height="24" />
+                    </button>
+                   
+                    <button id='rem-all'class="hidden-btn btn btn-danger" type='button'> 
+                       Remover todos
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row items-counter">
+            <div id="counter" style="width: 45vh; height: 4vh; ">
+                <div class="col">
+                    <h3 >Número de items:        
+                        <span class="num-items" >0</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        
+        {% if form %}
+            
+            {{form.managment_form}}
+                <div id="item-form-list" class="mt-4">
+                    
+                    {% for form in form %}
+                    
+                        <div class="item-form">
+                            {{form.as_p}}
+                        </div>
+                    
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div id="empty-form" class="hidden">
+                <div class="card shadow-lg rounded mb-5 mr-5 " style="width: 45vh; background-color: #FFE4E1; margin: 0 auto; margin-right: 100px;">
+                    <br>
+                    <img src="https://img.icons8.com/dotty/80/000000/ingredients.png"/>
+                    <br>
+                    <label id="name"><img class="mr-2"src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-tag-interface-kiranshastry-lineal-kiranshastry.png" width="30px"/>Nombre: </label>
+                    <br>
+                    {{form.empty_form.name}}
+                    <label class="mt-3" id="value"><img  class="mr-1" src="https://img.icons8.com/ios/50/000000/cheap-2.png" width="40px"/> Valor: </label>
+                    <br>
+                    {{form.empty_form.value}}
+                    <label class="mt-3" id="weight"><img class="mr-3" src="https://img.icons8.com/ios/50/000000/weight-kg.png" width="30px" />Peso: </label>
+                    <br>
+                    {{form.empty_form.weight}}
+                    <br>
+                </div>
+            </div>
+                        
+        {% endif %} 
+        
+        
+    </form>
+
+    <script>
+        const addMoreBtn = document.getElementById('add-more');
+        const remFormBtn = document.getElementById('rem-form');
+        const remAllBtn = document.getElementById('rem-all');
+        const currenItemsForms = document.getElementsByClassName('item-form');
+        const formCopyTarget = document.getElementById('item-form-list');
+        let currentFormCount = currenItemsForms.length;
+        addMoreBtn.addEventListener('click', add_new_form)
+        remFormBtn.addEventListener('click', remove_form)
+        remAllBtn.addEventListener('click', remove_all)
+        
+        function add_new_form(event){
+            if(event){
+                event.preventDefault()
+            }
+            
+            console.log(currenItemsForms.length);
+            const emptyFormEl = document.getElementById('empty-form').cloneNode(true);
+            emptyFormEl.setAttribute('class', 'item-form');
+            emptyFormEl.setAttribute('id', `form-${currentFormCount}`); 
+            let regex = new RegExp('__prefix__', 'g');
+            emptyFormEl.innerHTML = emptyFormEl.innerHTML.replace(regex, currentFormCount)
+            regex = new RegExp('form-0-name', 'g');
+            emptyFormEl.innerHTML = emptyFormEl.innerHTML.replace(regex, 'names')
+            regex = new RegExp('form-0-value', 'g');
+            emptyFormEl.innerHTML = emptyFormEl.innerHTML.replace(regex, 'values')
+            regex = new RegExp('form-0-weight', 'g');
+            emptyFormEl.innerHTML = emptyFormEl.innerHTML.replace(regex, 'weights')
+            formCopyTarget.append(emptyFormEl);
+            const removeBtnActive = document.getElementById('rem-form');
+            removeBtnActive.setAttribute('class', 'btn btn-danger')      
+            const removeAllBtnActive = document.getElementById('rem-all');
+            removeAllBtnActive.setAttribute('class', 'btn btn-danger');      
+            $('.num-items').text(currenItemsForms.length);
+
+        }
+
+        function remove_form(event){
+            if(event){
+                event.preventDefault();
+            }
+            console.log(currenItemsForms.length);
+            $(`#form-${currentFormCount}`).remove();
+            if(currenItemsForms.length==0){
+                const removeBtnActive = document.getElementById('rem-form');
+                removeBtnActive.setAttribute('class', 'hidden-btn'); 
+                const removeAllBtnActive = document.getElementById('rem-all');
+                removeAllBtnActive.setAttribute('class', 'hidden-btn'); 
+                $('.num-items').text(0);
+            }
+            $('.num-items').text(currenItemsForms.length);
+        }
+
+
+        function remove_all(event){
+            if(event){
+                event.preventDefault();
+            }
+            $('#item-form-list').empty();
+            const removeAllBtnActive = document.getElementById('rem-all');
+            removeAllBtnActive.setAttribute('class', 'hidden-btn'); 
+            const removeBtnActive = document.getElementById('rem-form');
+            removeBtnActive.setAttribute('class', 'hidden-btn'); 
+            $('.num-items').text(0);
+        }
+        
+        
+  
+    </script>
+
     {% endblock %}
