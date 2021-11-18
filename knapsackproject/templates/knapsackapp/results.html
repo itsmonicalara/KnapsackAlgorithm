@@ -2,120 +2,152 @@
 {% extends 'knapsackapp/base.html' %} 
 
     {% block body_block %} 
-    <div class="page-content page-container" id="page-content">
-        <div class="padding">
-            <div class="row container d-flex justify-content-center">
-                <div class="col-lg-6 grid-margin stretch-card d-flex">
-                    <div class="card rounded shadow-lg" style="width:65em; background-color: #D8BFD8; float: none; margin: 0 auto;">
-                        <div class="card-body shadow-lg" style="background-color: #D8BFD8;">
-                            <h4 class="card-title text-center">resultados</h4>
-                            <div class="mt-4">
-                                <div class="accordion" id="accordion" role="tablist">
-                                   
-                                    <div class="card">
-                                        <div class="card-header" role="tab" id="heading-2" >
-                                            <h2 class="mb-0 text-left"><a class="collapsed" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2" data-abc="true">  <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                width="24" height="24"
-                                                viewBox="0 0 172 172"
-                                                style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#000000"><path d="M85.6775,13.6525c-0.1075,0.02688 -0.215,0.06719 -0.3225,0.1075h-47.515c-0.1075,0 -0.215,0 -0.3225,0c-0.1075,0 -0.215,0 -0.3225,0c-0.55094,0.12094 -1.075,0.37625 -1.505,0.7525l-20.3175,16.985l-0.3225,0.215c-0.14781,0.09406 -0.29562,0.20156 -0.43,0.3225c-0.04031,0.04031 -0.06719,0.06719 -0.1075,0.1075c0,0.04031 0,0.06719 0,0.1075c-0.04031,0 -0.06719,0 -0.1075,0c0,0.06719 0,0.14781 0,0.215c-0.08062,0.1075 -0.14781,0.215 -0.215,0.3225c-0.13437,0.20156 -0.24187,0.41656 -0.3225,0.645c-0.05375,0.215 -0.09406,0.43 -0.1075,0.645c-0.02687,0.215 -0.02687,0.43 0,0.645v120.0775c0,1.89469 1.54531,3.44 3.44,3.44h137.6c1.89469,0 3.44,-1.54531 3.44,-3.44v-119.8625c0.01344,-0.17469 0.01344,-0.36281 0,-0.5375c0,-0.06719 0,-0.14781 0,-0.215c0,-0.04031 0,-0.06719 0,-0.1075c0,-0.06719 0,-0.14781 0,-0.215c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c0,-0.06719 0,-0.14781 0,-0.215c0,-0.04031 0,-0.06719 0,-0.1075c-0.02687,-0.06719 -0.06719,-0.14781 -0.1075,-0.215c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c0,-0.06719 0,-0.14781 0,-0.215c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.02687,-0.06719 -0.06719,-0.14781 -0.1075,-0.215c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.02687,-0.06719 -0.06719,-0.14781 -0.1075,-0.215c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075l-0.3225,-0.215c-0.06719,-0.08062 -0.13437,-0.14781 -0.215,-0.215l-20.1025,-16.77c-0.60469,-0.48375 -1.37062,-0.7525 -2.15,-0.7525h-47.4075c-0.34937,-0.09406 -0.71219,-0.13437 -1.075,-0.1075zM39.13,20.64h43.43v10.32h-55.7925zM89.44,20.64h43.43l12.3625,10.32h-55.7925zM20.64,37.84h130.72v113.52h-130.72zM73.96,51.6c-4.75687,0 -8.6,3.84313 -8.6,8.6c0,4.75688 3.84313,8.6 8.6,8.6h24.08c4.75688,0 8.6,-3.84312 8.6,-8.6c0,-4.75687 -3.84312,-8.6 -8.6,-8.6zM73.96,58.48h24.08c0.73906,0 1.72,0.98094 1.72,1.72c0,0.73906 -0.98094,1.72 -1.72,1.72h-24.08c-0.73906,0 -1.72,-0.98094 -1.72,-1.72c0,-0.73906 0.98094,-1.72 1.72,-1.72zM106.64,106.64l-10.32,10.32h6.88v13.76h6.88v-13.76h6.88zM130.72,106.64l-10.32,10.32h6.88v13.76h6.88v-13.76h6.88zM96.32,134.16v6.88h44.72v-6.88z"></path></g></g></svg>Productos por empacar </a> </h2>
+    
+    <div class="results mt-5" >
+      <div class="card-body shadow-lg" style="margin-top: 20px; width:45em; background-color: #D8BFD8; box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66); ">
+        <h1 class="card-title text-center">Resultados</h1>
+        <div class="mt-4">
+          <div class="accordion" id="accordion" role="tablist">
+            <div class="card">
+              <div class="card-header " role="tab" id="heading-2" >
+                  <a class="collapsed" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2" data-abc="true">  <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                      width="24" height="24"
+                      viewBox="0 0 172 172" 
+                      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#000000"><path d="M85.6775,13.6525c-0.1075,0.02688 -0.215,0.06719 -0.3225,0.1075h-47.515c-0.1075,0 -0.215,0 -0.3225,0c-0.1075,0 -0.215,0 -0.3225,0c-0.55094,0.12094 -1.075,0.37625 -1.505,0.7525l-20.3175,16.985l-0.3225,0.215c-0.14781,0.09406 -0.29562,0.20156 -0.43,0.3225c-0.04031,0.04031 -0.06719,0.06719 -0.1075,0.1075c0,0.04031 0,0.06719 0,0.1075c-0.04031,0 -0.06719,0 -0.1075,0c0,0.06719 0,0.14781 0,0.215c-0.08062,0.1075 -0.14781,0.215 -0.215,0.3225c-0.13437,0.20156 -0.24187,0.41656 -0.3225,0.645c-0.05375,0.215 -0.09406,0.43 -0.1075,0.645c-0.02687,0.215 -0.02687,0.43 0,0.645v120.0775c0,1.89469 1.54531,3.44 3.44,3.44h137.6c1.89469,0 3.44,-1.54531 3.44,-3.44v-119.8625c0.01344,-0.17469 0.01344,-0.36281 0,-0.5375c0,-0.06719 0,-0.14781 0,-0.215c0,-0.04031 0,-0.06719 0,-0.1075c0,-0.06719 0,-0.14781 0,-0.215c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c0,-0.06719 0,-0.14781 0,-0.215c0,-0.04031 0,-0.06719 0,-0.1075c-0.02687,-0.06719 -0.06719,-0.14781 -0.1075,-0.215c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c0,-0.06719 0,-0.14781 0,-0.215c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.02687,-0.06719 -0.06719,-0.14781 -0.1075,-0.215c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.02687,-0.06719 -0.06719,-0.14781 -0.1075,-0.215c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075c-0.04031,-0.04031 -0.06719,-0.06719 -0.1075,-0.1075l-0.3225,-0.215c-0.06719,-0.08062 -0.13437,-0.14781 -0.215,-0.215l-20.1025,-16.77c-0.60469,-0.48375 -1.37062,-0.7525 -2.15,-0.7525h-47.4075c-0.34937,-0.09406 -0.71219,-0.13437 -1.075,-0.1075zM39.13,20.64h43.43v10.32h-55.7925zM89.44,20.64h43.43l12.3625,10.32h-55.7925zM20.64,37.84h130.72v113.52h-130.72zM73.96,51.6c-4.75687,0 -8.6,3.84313 -8.6,8.6c0,4.75688 3.84313,8.6 8.6,8.6h24.08c4.75688,0 8.6,-3.84312 8.6,-8.6c0,-4.75687 -3.84312,-8.6 -8.6,-8.6zM73.96,58.48h24.08c0.73906,0 1.72,0.98094 1.72,1.72c0,0.73906 -0.98094,1.72 -1.72,1.72h-24.08c-0.73906,0 -1.72,-0.98094 -1.72,-1.72c0,-0.73906 0.98094,-1.72 1.72,-1.72zM106.64,106.64l-10.32,10.32h6.88v13.76h6.88v-13.76h6.88zM130.72,106.64l-10.32,10.32h6.88v13.76h6.88v-13.76h6.88zM96.32,134.16v6.88h44.72v-6.88z"></path></g></g></svg>Productos por empacar </a> 
+              </div>
+              <div id="collapse-2" class="collapse text-center" role="tabpanel" aria-labelledby="heading-2" data-parent="#accordion">
+                  <p class=" ml-4"  style="color: #C4B454;"> <i class="mdi mdi-alert-octagon mr-2 text-center" style="color: yellow;"></i><img class="mr-2" src="https://img.icons8.com/pastel-glyph/64/000000/logistics--v2.png" width="24px"/>Valor óptimo: {{knapsack.opt_value}}</p>
+                  <p class="text-success text-center"> <i class="mdi mdi-alert-octagon mr-2 text-center"></i>El valor óptimo se refiere a la suma de valores de productos más relevantes entre los productos.</p>
+                  <p class=" text-center" style="color:blueviolet"> <i  style="color:blueviolet" class="mdi mdi-alert-octagon mr-2 text-center"></i><img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/60/000000/external-backpack-vacation-vitaliy-gorbachev-lineal-vitaly-gorbachev.png" class="mr-2" width="24px" />Capacidad de tu mochila: {{knapsack.capacity}}</p>
+                  <p class=" text-center" style="color: rebeccapurple "> <i  style="color:blueviolet" class="mdi mdi-alert-octagon mr-2 text-center"></i><img src="https://img.icons8.com/ios/50/000000/weight-kg.png" width="24px" class="mr-2"/>Peso total ocupado: {{knapsack.weight_used}}</p>
+                  <div class="card-body " >
+                    <ul class=" mt-1 ml-5 text-left" style="list-style-type:none;">
+                      {% for items in knapsack.items %}
+                      <div class="row">
+                          <div class="col-sm">
+                              <img class="text-left" src="https://img.icons8.com/dotty/80/000000/ingredients.png" width="24px"/>
+                          </div>
+                          <div class="col">
+                              <li class="">{{items.name}}</li>  
+                          </div>
+                          <div class="col-sm">
+                              <a class="collapsed" data-toggle="collapse" href="#info-collapse-{{forloop.counter}}" role="button" aria-expanded="false" aria-controls="info-collapse-{{forloop.counter}}" data-abc="true">
+                                  <img  class="ml-5" src="https://img.icons8.com/material-outlined/50/000000/info.png" width="10%"/>
+                              </a>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col">
+                              <div class="collapse" role="tabpanel" aria-labelledby="info-collapse-{{forloop.counter}}" id="info-collapse-{{forloop.counter}}">
+                                  <div class="card card-body text-center mt-4 mb-4" style="border: 2px solid black; width: 25em; float:none; margin: 0 auto; margin-right: 120px;">
+                                      <div class="row">
+                                        <div class="col">
+                                          <img src="https://img.icons8.com/ios/50/000000/expensive-2--v2.png" width="24px" class="mr-3"/> Valor: {{items.value}}
                                         </div>
-                                        <div id="collapse-2" class="collapse" role="tabpanel" aria-labelledby="heading-2" data-parent="#accordion">
-                                            <p class="text-success ml-3"> <i class="mdi mdi-alert-octagon mr-2 text-center"></i>Valor óptimo: {{knapsack.opt_value}}</p>
-                                            <p class="text-success text-center"> <i class="mdi mdi-alert-octagon mr-2 text-center"></i>El valor óptimo se refiere al valor óptimo que el algoritmo recopiló.</p>
-                                            <div class="card-body" >
-                                                <ul class=" mt-1" style="list-style-type:none;">
-                                                    {% for items in knapsack.items %}
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <li class="ml-4">{{items.name}}  </li>  
-                                                        </div>
-                                                        <div class="col">
-                                                            <img style="display:-ms-inline-grid;" class="ml-5" src="https://img.icons8.com/material-outlined/50/000000/info.png" width="10%"/>
-                                                        </div>
-                                                    </div>
-                                                    {% endfor %}
-                                                </ul> <br>
-                                                <p class="text-success"> <i class="mdi mdi-alert-octagon mr-2"></i>Estos items son los que caben en tu mochila. </p>
-                                            </div>
+                                      </div>   
+                                      <div class="row">
+                                        <div class="col">
+                                          <img src="https://img.icons8.com/ios/50/000000/weight-kg.png" width="22px" class="mr-4"/>Peso: {{items.weight}}
                                         </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" role="tab" id="heading-3">
-                                            <h6 class="mb-0 "> <a class="collapsed" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3" data-abc="true">
-                                                <img class="mr-1" src="https://img.icons8.com/ios/50/000000/do-not-drop.png" width="24px" height="24px"/> Productos descartados</a> 
-                                            </h6>
-                                        </div>
-                                        <div id="collapse-3" class="collapse" role="tabpanel" aria-labelledby="heading-3" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <ol class="mt-1 text-center">
-                                                    {% for items in knapsack.discarded_items %}
-                                                        <li>{{items.name}}   </li>
-                                                    {% endfor %}
-                                                </ol> <br>
-                                                {% if knapsack.discarded_items %}
-                                                    <p class="text-success"> <i class="mdi mdi-alert-octagon mr-2 ml-2 text-center"></i>Estos items no son óptimos para guardar en tu mochila. </p>
-                                                {% else %}
-                                                    <p class="text-success"> <i class="mdi mdi-alert-octagon mr-2 ml-2 text-center"></i>No hay ningún item por descartar. </p>
-                                                {% endif %}
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                      </div>                                  
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      {% endfor %}
+                    </ul> <br>
+                    <p class="text-success text-center"> <i class="mdi mdi-alert-octagon mr-2 ml-3"></i>Estos items son los que caben en tu mochila. </p>
+                  </div>
+              </div>
+            </div>
+            <div class="card">
+                <div class="card-header text-right" role="tab" id="heading-3">
+                    <h6 class="mb-0 "> <a class="collapsed" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3" data-abc="true">
+                        <img class="mr-1" src="https://img.icons8.com/ios/50/000000/do-not-drop.png" width="24px" height="24px"/> Productos descartados</a> 
+                    </h6>
+                </div>
+                <div id="collapse-3" class="collapse" role="tabpanel" aria-labelledby="heading-3" data-parent="#accordion">
+                <p class=" text-center" style="color: rebeccapurple "> <i  style="color:blueviolet" class="mdi mdi-alert-octagon mr-2 text-center"></i><img src="https://img.icons8.com/ios/50/000000/weight-kg.png" width="24px" class="mr-2"/>Peso total NO ocupado: {{knapsack.free_weight}}</p>
+                <div class="card-body text-center">
+                  <ul class=" mt-1 ml-5 text-left" style="list-style-type:none;">
+                    {% for items in knapsack.discarded_items %}
+                    <div class="row">
+                        <div class="col-sm">
+                            <img class="text-left" src="https://img.icons8.com/dotty/80/000000/ingredients.png" width="24px"/>
+                        </div>
+                        <div class="col">
+                            <li class="">{{items.name}}</li>  
+                        </div>
+                        <div class="col-sm">
+                            <a class="collapsed" data-toggle="collapse" href="#n-info-collapse-{{forloop.counter}}" role="button" aria-expanded="false" aria-controls="n-info-collapse-{{forloop.counter}}" data-abc="true">
+                                <img  class="ml-5" src="https://img.icons8.com/material-outlined/50/000000/info.png" width="10%"/>
+                            </a>
                         </div>
                     </div>
-                </div>
+                    <div class="row">
+                      <div class="col">
+                          <div class="collapse" role="tabpanel" aria-labelledby="n-info-collapse-{{forloop.counter}}" id="n-info-collapse-{{forloop.counter}}">
+                              <div class="card card-body text-center mt-4 mb-4" style="border: 2px solid black; width: 25em; float:none; margin: 0 auto; margin-right: 120px;">
+                                  <div class="row">
+                                    <div class="col">
+                                      <img src="https://img.icons8.com/ios/50/000000/expensive-2--v2.png" width="24px" class="mr-3"/> Valor: {{items.value}}
+                                    </div>
+                                  </div>   
+                                  <div class="row">
+                                    <div class="col">
+                                      <img src="https://img.icons8.com/ios/50/000000/weight-kg.png" width="22px" class="mr-4"/>Peso: {{items.weight}}
+                                    </div>
+                                  </div>                                  
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                    {% endfor %}
+                  </ul> <br>
+                  {% if knapsack.discarded_items %}
+                      <p class="text-success"> <i class="mdi mdi-alert-octagon mr-2 ml-3 text-center"></i>Estos items no son óptimos para guardar en tu mochila. </p>
+                  {% else %}
+                      <p class="text-success"> <i class="mdi mdi-alert-octagon mr-2 ml-3 text-center"></i>No hay ningún item por descartar. </p>
+                  {% endif %}
+              </div>
             </div>
+          </div>
         </div>
+        </div>
+      </div>
     </div>
+
+
     <style>
  
-        .flex {
-            -webkit-box-flex: 1;
-            -ms-flex: 1 1 auto;
-            flex: 1 1 auto
+        .card-body{
+            margin-top: 20px;
+            float: none;
+            margin: 0 auto;
+            
         }
-
-
-
-        .padding {
-            padding: 5rem
-        }
-
-
-        .pl-3,
-        .px-3 {
-            padding-left: 1rem !important
-        }
-
-   
 
         .card .card-title {
             color: #000000;
             margin-bottom: 0.625rem;
             text-transform: capitalize;
-            font-size: 1.875rem;
+            font-size: 2.875rem;
             font-weight: 500
         }
 
         .card .card-description {
             margin-bottom: .875rem;
             font-weight: 400;
-            color: #76838f
+            color: #76838f;
+            font-size: 1.8rem;
         }
 
-        .accordion .card:first-of-type {
-            border-bottom: 0;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0
-        }
 
         .accordion .card {
             margin-bottom: .75rem;
             box-shadow: 0px 1px 15px 1px rgba(230, 234, 236, 0.35);
             border-radius: .25rem;
-            border: none
+            
         }
 
         .accordion .card .card-header {
@@ -142,7 +174,7 @@
             display: block;
             color: inherit;
             text-decoration: none;
-            font-size: inherit;
+            font-size: 1.2rem;
             position: relative;
             -webkit-transition: color 0.5s ease;
             -moz-transition: color 0.5s ease;
@@ -154,7 +186,7 @@
 
         .accordion .card .card-header * {
             font-weight: 400;
-            font-size: 1rem
+            font-size: 1.2rem
         }
 
         .accordion .card .card-header a[aria-expanded="false"]:before {
@@ -166,17 +198,7 @@
         }
 
         .accordion .card .card-header a:before {
-            position: absolute;
-            right: 7px;
-            top: 0;
-            font-size: 18px;
-            display: block;
-            
-            display: inline-block;
-            padding-right: 3px;
-            
-            font-size: .756em;
-            color: #405189
+            display: none;
         }
     </style>
     {% endblock %}

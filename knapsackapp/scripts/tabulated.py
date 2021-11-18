@@ -22,7 +22,7 @@ def tabulated(backpack, items):
 	
 	
 
-# # Test case 1
+# Test case 1
 # backpack = Knapsack(50,3)
 # #Item(w,v,name)
 # item1 = Item(10, 60, "Acta de nacimiento") 

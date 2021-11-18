@@ -1,3 +1,4 @@
+import functools
 class Knapsack:
     def __init__(self, capacity,n):
         self.capacity = capacity
@@ -5,6 +6,8 @@ class Knapsack:
         self.opt_value = 0
         self.items = []
         self.discarded_items = []
+        self.weight_used = 0
+        self.free_weight = 0
 
     @property
     def capacity(self):
@@ -56,9 +59,15 @@ class Knapsack:
             if o_item not in self.items:
                 self.discarded_items.append(o_item)
 
+        self.weight_used = functools.reduce(lambda a, b: a+b, 
+                                            list(map(lambda x: x.weight, self.items)))   
+
+        self.free_weight = self.capacity - self.weight_used     
+
     def __str__(self):
         return f'''Backpack with capacity of : {self.capacity}
         \nTotal items to manage: {self.total}
         \nOptimal Value of : {self.opt_value} 
         \nPacked items : {[str(i) for i in self.items]}
-        \nDiscarded items : {[str(i) for i in self.discarded_items]}'''
+        \nDiscarded items : {[str(i) for i in self.discarded_items]}
+        \nWeight occupied : {self.weight_used}'''
