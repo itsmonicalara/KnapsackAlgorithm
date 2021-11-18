@@ -1,6 +1,3 @@
-from knapsack import Knapsack
-from item import Item
-
 # Knapsack Tabulated -  Dynammic Programming (Recursive to iterative). Divided into subproblems.
 # Time Complexity: O(N*W).
 def tabulated(backpack, items):
@@ -21,27 +18,17 @@ def tabulated(backpack, items):
 				table[i][w] = table[i-1][w]
 	# Stores the result of Knapsack
 	backpack.opt_value = table[backpack.total][backpack.capacity]
-
-	for i in range(backpack.total, 0, -1):
-		if backpack.opt_value <= 0:
-			break
-		if backpack.opt_value == table[i - 1][backpack.capacity]:
-			continue
-		else:
-			# Just in case we need weight and values of selected items
-			backpack.items.append(items[i-1])
-			backpack.opt_value = backpack.opt_value - items[i - 1].value
-			backpack.capacity = backpack.capacity - items[i - 1].weight
+	backpack.pack_unpack_items(items, table)
+	
 	
 
-if __name__ == '__main__':
-	# Test case 1
-	backpack = Knapsack(50)
-	#Item(w,v,name)
-	item1 = Item(10, 60, "Acta de nacimiento") 
-	item2 = Item(20, 100, "Agua") 
-	item3 = Item(30, 120, "Medicinas") 
-	# Expected output: 220
-	items = [item1, item2, item3]
-	tabulated(backpack, items)
-	print(str(backpack))
+# # Test case 1
+# backpack = Knapsack(50,3)
+# #Item(w,v,name)
+# item1 = Item(10, 60, "Acta de nacimiento") 
+# item2 = Item(20, 100, "Agua") 
+# item3 = Item(30, 120, "Medicinas") 
+# # Expected output: 220
+# items = [item1, item2, item3]
+# tabulated(backpack, items)
+# print(str(backpack))

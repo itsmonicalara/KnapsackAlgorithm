@@ -2,89 +2,33 @@
 {% extends 'knapsackapp/base.html' %} 
 
     {% block body_block %} 
-    <style>
-        .hidden{
-            display: none;
-        }
 
-        .hidden-btn{
-            display:none;
-        }
-
-        .card{
-            width: 50%;
-            float:left;
-            border: 2px solid black;
-            
-        }
-
-        input{
-            margin: 0 auto;
-            float: none;
-            max-width: 12em;
-            outline: 0;
-            border-width: 0 0 2px;
-            border-color: gray;
-            background: transparent;
-        }
-        label{
-            margin: 0 auto;
-            float: none;
-            
-        }
-
-        #item-form-list{
-            column-count: 1;
-            -webkit-column-count: 1; 
-        }
-
-        button{
-            float: right;
-            margin-right: 1em;
-        }
-
-        img{
-            margin: 0 auto;
-            float: none;
-            
-        }
-
-        form{
-            margin-left: 100px;
-        }
-        .my-buttons{
-            margin-top: 10px;
-            margin-right: 70px;
-            float:right;
-        }
-
-        .items-counter{
-            margin-top: 25px;
-            margin-bottom: 20px;
-            margin-left: 3px;
-            color: #2F4F4F;
-        }
-
-        .num-items{
-            font-family: 'Source Sans Pro', sans-serif;
-            padding-bottom: 30px;
-            margin-right: 145px;
-            font-size: 27px;
-            float: right;
-            position: relative;
-            color: #2F4F4F;
-        }
-
-    </style>
     <div class="text-center  rounded mb-5 mr-5 ">
-        <h1 class="text-center mb-5">Ingresa los datos necesarios</h1>
-        <p>La <b><i>capacidad mochila</i></b> es la capacidad máxima de peso que tu mochila soporta.</p>
-        <hr>
-        <p>Asígnale un <b><i>nombre</i></b> al producto que deseas agregar. </p>
-        <hr>
-        <p>El <b><i>valor</i></b> de tu producto. Tú asíngale el valor que desees, ya sea monetario o sentimental.</p>
-        <hr>
-        <p>El <b><i>peso</i></b> de tu producto. Maneja la misma unidad de peso que la capacidad de tu mochila.</p></p>
+            <article class="postcard light blue shadow-lg p-3 mb-5 rounded">
+        <a class="postcard__img_link" href="#">
+            <img class="postcard__img" src="https://www.indietraveller.co/wp-content/uploads/2018/04/P1090420-4.jpg" alt="Image Title" />
+        </a>
+        <div class="postcard__text t-dark">
+            <h1 class="postcard__title blue">Ingresa los datos necesarios</h1>
+  
+            <div class="postcard__bar"></div>
+            <div class="postcard__preview-txt">        
+                <p class="ml-3">Ahora, es momento de poner en marcha la idea del algoritmo. Primero que nada, piensa en todos
+                    aquellos productos que necesitarías en caso de una emergencia, priorizalos y agrégalos a continuación.
+                    Después, piensa en esos productos que no son vitales, pero, los cuales aún podrían
+                    caber en tu mochila. A continuación se hará mención de cada uno de los atributos de los cuales debes
+                    considerar a la horar de juntar diferentes productos.
+                </p>
+                <hr>
+                <p class="text-center">La <b><i>capacidad mochila</i></b> es la capacidad máxima de peso que tu mochila soporta.</p>
+                <hr>
+                <p class="text-center">Asígnale un <b><i>nombre</i></b> al producto que deseas agregar. </p>
+                <hr>
+                <p class="text-center">Tú asíngale el <b><i>valor</i></b> que desees, ya sea monetario o sentimental.</p>
+                <hr>
+                <p class="text-center">Con el <b><i>peso</i></b> de tu producto maneja la misma unidad de peso que la capacidad de tu mochila. Ten en cuenta los pesos de los productos que vas a agregar.</p></p></div>
+        </div>
+    </article>
         
     </div>
     <hr>
@@ -95,13 +39,14 @@
             <div class="col">
                 <div class="capacity-form">
                     <label class="text-uppercase mt-3"> <img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/60/000000/external-backpack-jungle-vitaliy-gorbachev-lineal-vitaly-gorbachev.png" width="44px"/> Capacidad mochila: </label>
-                    <input type="number" class="mb-3" name="capacity"></input>
+                    <input type="number" min="1" step="1" class="mb-3" name="capacity"></input>
                 </div>
             </div>
             <div class="col">
                 <div class="my-buttons">
                     <button type="submit" class="btn btn-success" >Continuar</button>
                     <button id='add-more'class="btn btn-warning" type='button'> 
+                        
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         width="24" height="24"
                         viewBox="0 0 30 30"
@@ -117,12 +62,13 @@
                 </div>
             </div>
         </div>
+        
 
         <div class="row items-counter">
             <div id="counter" style="width: 45vh; height: 4vh; ">
                 <div class="col">
                     <h3 >Número de items:        
-                        <span class="num-items" >0</span>
+                        <p class="num-items" >0</p>
                     </h3>
                 </div>
             </div>
@@ -147,7 +93,7 @@
             </div>
             
             <div id="empty-form" class="hidden">
-                <div class="card shadow-lg rounded mb-5 mr-5 " style="width: 45vh; background-color: #FFE4E1; margin: 0 auto; margin-right: 100px;">
+                <div class="card card-item shadow-lg rounded mb-5 mr-5 " style="width: 45vh; background-color: #FFE4E1; margin: 0 auto; margin-right: 100px;">
                     <br>
                     <img src="https://img.icons8.com/dotty/80/000000/ingredients.png"/>
                     <br>
@@ -163,11 +109,12 @@
                     <br>
                 </div>
             </div>
-                        
+
         {% endif %} 
         
         
     </form>
+
 
     <script>
         const addMoreBtn = document.getElementById('add-more');
